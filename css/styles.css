@@ -681,7 +681,7 @@ h3 {
 .location-card .city {
   font-family: var(--font-display);
   font-size: 1.85rem;
-  color: var(--red-light);
+  color: var(--green-light);
 }
 
 .location-card address {
@@ -1483,9 +1483,9 @@ h3 {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: var(--red-dim);
-  color: var(--red-light);
-  border: 1px solid var(--border);
+  background: var(--green-dim);
+  color: var(--green-light);
+  border: 1px solid var(--border-green);
 }
 
 /* Business-card style red/green accent bar */
