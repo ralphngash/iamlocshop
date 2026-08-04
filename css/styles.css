@@ -521,6 +521,12 @@ h3 {
   max-width: 720px;
 }
 
+
+.hero-content h1 {
+  line-height: 1.12;
+  max-width: 14ch;
+  text-wrap: balance;
+}
 .hero-content h1 em {
   font-style: italic;
   color: var(--gold-light);
