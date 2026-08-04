@@ -72,6 +72,33 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Fixed lion logo — stays visible while scrolling */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 85% 75% at 72% 38%,
+      rgba(10, 10, 10, 0.25) 0%,
+      rgba(10, 10, 10, 0.72) 55%,
+      rgba(10, 10, 10, 0.92) 100%
+    ),
+    url("../assets/logo.png") 78% 36% / min(68vw, 560px) no-repeat;
+  opacity: 1;
+}
+
+/* Content sits above fixed lion */
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 img {
@@ -104,6 +131,14 @@ select {
 
 .section {
   padding: 5.5rem 0;
+  /* Let fixed lion show through slightly */
+  background: transparent;
+}
+
+.section-elevated {
+  background: rgba(17, 17, 17, 0.78);
+  border-block: 1px solid var(--border-soft);
+  backdrop-filter: blur(4px);
 }
 
 .section-sm {
@@ -454,22 +489,29 @@ h3 {
   overflow: hidden;
 }
 
+/* Hero uses the same fixed lion; local scrim only for text contrast */
 .hero-bg {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(12, 10, 9, 0.5) 0%, rgba(12, 10, 9, 0.68) 50%, rgba(12, 10, 9, 0.96) 100%),
-    linear-gradient(90deg, rgba(12, 10, 9, 0.88) 0%, rgba(12, 10, 9, 0.45) 48%, rgba(12, 10, 9, 0.25) 100%),
-    url("../assets/hero-bg.jpg") center center / cover no-repeat;
   z-index: 0;
+  background:
+    linear-gradient(
+      105deg,
+      rgba(10, 10, 10, 0.88) 0%,
+      rgba(10, 10, 10, 0.55) 42%,
+      rgba(10, 10, 10, 0.2) 70%,
+      rgba(10, 10, 10, 0.45) 100%
+    ),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0.15) 50%, rgba(10, 10, 10, 0.75) 100%);
+  pointer-events: none;
 }
 
 .hero-bg::after {
   content: "";
   position: absolute;
   inset: auto 0 0 0;
-  height: 180px;
-  background: linear-gradient(transparent, var(--bg));
+  height: 160px;
+  background: linear-gradient(transparent, rgba(10, 10, 10, 0.85));
 }
 
 .hero-content {
@@ -557,9 +599,10 @@ h3 {
 
 /* ---------- Feature strip ---------- */
 .strip {
-  background: var(--bg-elevated);
+  background: rgba(17, 17, 17, 0.82);
   border-block: 1px solid var(--border-soft);
   padding: 1.25rem 0;
+  backdrop-filter: blur(6px);
 }
 
 .strip-inner {
@@ -1118,11 +1161,10 @@ h3 {
 .cta-band {
   position: relative;
   padding: 5rem 0;
-  background:
-    linear-gradient(135deg, rgba(12, 10, 9, 0.82), rgba(12, 10, 9, 0.9)),
-    url("../assets/gallery-11.jpg") center 20% / cover no-repeat;
+  background: rgba(10, 10, 10, 0.78);
   border-block: 1px solid var(--border);
   text-align: center;
+  backdrop-filter: blur(4px);
 }
 
 .cta-band h2 {
@@ -1145,9 +1187,10 @@ h3 {
 
 /* ---------- Footer ---------- */
 .site-footer {
-  background: var(--bg-elevated);
+  background: rgba(17, 17, 17, 0.9);
   border-top: 1px solid var(--border-soft);
   padding: 4rem 0 2rem;
+  backdrop-filter: blur(8px);
 }
 
 .footer-grid {
