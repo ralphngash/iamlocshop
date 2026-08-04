@@ -15,6 +15,18 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // Lion background fades out over first viewport of scroll (readability)
+  const updateLionFade = () => {
+    const range = Math.max(window.innerHeight * 0.85, 320);
+    const y = window.scrollY || 0;
+    // 1 at top → 0 after ~one screen of scroll
+    const fade = Math.max(0, Math.min(1, 1 - y / range));
+    document.documentElement.style.setProperty("--lion-fade", fade.toFixed(3));
+  };
+  window.addEventListener("scroll", updateLionFade, { passive: true });
+  window.addEventListener("resize", updateLionFade, { passive: true });
+  updateLionFade();
+
   // Mobile nav
   if (toggle && nav) {
     toggle.addEventListener("click", () => {

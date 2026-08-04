@@ -75,7 +75,7 @@ body {
   position: relative;
 }
 
-/* Fixed lion logo — stays visible while scrolling */
+/* Fixed lion logo — fades out over first scroll (JS sets --lion-fade) */
 body::before {
   content: "";
   position: fixed;
@@ -90,7 +90,10 @@ body::before {
       rgba(10, 10, 10, 0.92) 100%
     ),
     url("../assets/logo.png") 78% 36% / min(68vw, 560px) no-repeat;
-  opacity: 1;
+  /* 1 = full lion at top; 0 = solid readable page after scroll */
+  opacity: var(--lion-fade, 1);
+  transition: opacity 0.05s linear;
+  will-change: opacity;
 }
 
 /* Content sits above fixed lion */
