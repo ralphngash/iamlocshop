@@ -674,7 +674,7 @@ h3 {
   right: 0;
   width: 120px;
   height: 120px;
-  background: radial-gradient(circle, var(--gold-dim), transparent 70%);
+  background: radial-gradient(circle, var(--green-dim), transparent 70%);
   pointer-events: none;
 }
 
