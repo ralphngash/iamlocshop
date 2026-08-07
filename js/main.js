@@ -15,16 +15,43 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // Lion background fades out over first viewport of scroll (readability)
+  // Lion background fades out over first viewport of scroll (readability).
+  // Lock fade range so mobile Chrome toolbar show/hide (height-only
+  // "resize") does not recalculate and make opacity/layout pop.
+  let lionFadeRange = Math.max(window.innerHeight * 0.85, 320);
+  let lionLastWidth = window.innerWidth;
+
   const updateLionFade = () => {
-    const range = Math.max(window.innerHeight * 0.85, 320);
     const y = window.scrollY || 0;
     // 1 at top → 0 after ~one screen of scroll
-    const fade = Math.max(0, Math.min(1, 1 - y / range));
+    const fade = Math.max(0, Math.min(1, 1 - y / lionFadeRange));
     document.documentElement.style.setProperty("--lion-fade", fade.toFixed(3));
   };
+
   window.addEventListener("scroll", updateLionFade, { passive: true });
-  window.addEventListener("resize", updateLionFade, { passive: true });
+  window.addEventListener(
+    "resize",
+    () => {
+      // Ignore height-only changes from browser chrome (home bar / URL bar)
+      if (Math.abs(window.innerWidth - lionLastWidth) < 8) return;
+      lionLastWidth = window.innerWidth;
+      lionFadeRange = Math.max(window.innerHeight * 0.85, 320);
+      updateLionFade();
+    },
+    { passive: true }
+  );
+  window.addEventListener(
+    "orientationchange",
+    () => {
+      // Real rotation — refresh range after chrome settles
+      setTimeout(() => {
+        lionLastWidth = window.innerWidth;
+        lionFadeRange = Math.max(window.innerHeight * 0.85, 320);
+        updateLionFade();
+      }, 250);
+    },
+    { passive: true }
+  );
   updateLionFade();
 
   // Mobile nav

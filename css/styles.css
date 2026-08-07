@@ -75,11 +75,19 @@ body {
   position: relative;
 }
 
-/* Fixed lion logo — fades out over first scroll (JS sets --lion-fade) */
+/* Fixed lion logo — fades out over first scroll (JS sets --lion-fade)
+   Use 100lvh (large viewport), not inset:0 / 100dvh — mobile Chrome
+   show/hide of toolbar changes dynamic viewport height and made the
+   logo jump when background % position reflowed. */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* Fallbacks then stable large viewport height */
+  height: 100vh;
+  height: 100lvh;
   z-index: 0;
   pointer-events: none;
   background:
@@ -93,7 +101,6 @@ body::before {
   /* 1 = full lion at top; 0 = solid readable page after scroll */
   opacity: var(--lion-fade, 1);
   transition: opacity 0.05s linear;
-  will-change: opacity;
 }
 
 /* Content sits above fixed lion */
