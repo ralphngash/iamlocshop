@@ -1046,11 +1046,12 @@ h3 {
   overflow: hidden;
   border: 1px solid var(--border-soft);
   background: #fff;
-  padding: 0.75rem;
+  padding: 1.25rem 1.5rem;
   width: fit-content;
   max-width: 100%;
   margin-inline: auto;
   align-self: start;
+  box-shadow: var(--shadow);
 }
 
 .about-photo img {
@@ -1113,12 +1114,147 @@ h3 {
   letter-spacing: 0.04em;
 }
 
+/* Long-form founder story */
+.story-band {
+  padding-bottom: 1rem;
+}
+
+.story-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+.story-section h2 {
+  margin-bottom: 1.15rem;
+}
+
+.founder-label {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+.founder-story p {
+  margin-bottom: 1.35rem;
+}
+
+.founder-story p:last-child {
+  margin-bottom: 0;
+}
+
+.story-prose {
+  color: var(--cream-muted);
+  line-height: 1.75;
+  font-size: 1.05rem;
+}
+
+.story-prose p {
+  margin-bottom: 1.15rem;
+}
+
+.story-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.story-prose a {
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.story-prose a:hover {
+  color: var(--gold);
+}
+
+.story-quote {
+  border-left: 2px solid var(--gold);
+  padding: 0.85rem 0 0.85rem 1.25rem;
+  margin: 1.5rem 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--gold-light);
+  line-height: 1.45;
+}
+
+.story-quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.story-quote-feature {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  box-shadow: var(--shadow);
+}
+
+.milestone-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.85rem;
+}
+
+.milestone-list li {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1rem 0.85rem;
+  text-align: center;
+}
+
+.milestone-list strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.milestone-list span {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 900px) {
+  .milestone-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 860px) {
   .about-grid {
     grid-template-columns: 1fr;
   }
   .about-photo {
     margin-inline: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .milestone-list {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -1224,6 +1360,47 @@ h3 {
     radial-gradient(ellipse 50% 40% at 90% 10%, rgba(47, 122, 50, 0.1), transparent 50%),
     var(--bg);
   border-bottom: 1px solid var(--border-soft);
+}
+
+/* Wide screens: open right side so fixed lion shows at top of page */
+@media (min-width: 960px) {
+  .page-hero {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(10, 10, 10, 0.92) 0%,
+        rgba(10, 10, 10, 0.72) 42%,
+        rgba(10, 10, 10, 0.28) 68%,
+        rgba(10, 10, 10, 0.12) 100%
+      ),
+      radial-gradient(ellipse 55% 80% at 12% 30%, rgba(200, 16, 46, 0.12), transparent 60%),
+      radial-gradient(ellipse 45% 55% at 88% 20%, rgba(47, 122, 50, 0.08), transparent 55%),
+      transparent;
+    border-bottom-color: rgba(255, 255, 255, 0.04);
+  }
+
+  .hero-bg {
+    background:
+      linear-gradient(
+        105deg,
+        rgba(10, 10, 10, 0.9) 0%,
+        rgba(10, 10, 10, 0.55) 40%,
+        rgba(10, 10, 10, 0.12) 72%,
+        rgba(10, 10, 10, 0.2) 100%
+      ),
+      linear-gradient(180deg, rgba(10, 10, 10, 0.25) 0%, transparent 45%, rgba(10, 10, 10, 0.65) 100%);
+  }
+
+  body::before {
+    background:
+      radial-gradient(
+        ellipse 90% 80% at 72% 38%,
+        rgba(10, 10, 10, 0.15) 0%,
+        rgba(10, 10, 10, 0.55) 52%,
+        rgba(10, 10, 10, 0.88) 100%
+      ),
+      url("../assets/logo.png") 78% 34% / min(72vw, 640px) no-repeat;
+  }
 }
 
 .page-hero h1 {
